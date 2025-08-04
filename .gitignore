@@ -1,0 +1,30 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Roadmap File
+NeuraMate_Build_Roadmap.docx
+
+# Build outputs
+.next/
+out/
+dist/
+
+# VS Code
+.vscode/
+
+# Logs
+logs/
+*.log
+
+
+# Optional: dependencies lock files (if not using same lock manager)
+# package-lock.json
+# yarn.lock
