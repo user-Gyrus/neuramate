@@ -12,6 +12,7 @@ yarn-error.log*
 # Roadmap File
 NeuraMate_Build_Roadmap.docx
 ImageSelection/
+VideoSelection/
 
 # Build outputs
 .next/
