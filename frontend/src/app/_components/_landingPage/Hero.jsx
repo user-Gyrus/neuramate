@@ -38,9 +38,9 @@ function Hero() {
         </div>
       </div>
 
-      <div>
+      <div className="my-4">
         <h1
-          className={`text-center text-2xl font-bold mt-8 ${poppins.className}`}
+          className={`text-center text-2xl font-bold my-8 ${poppins.className}`}
         >
           Explore Key features of <br />
           <span className={`${orbitron.className}`}>NEURAMATE</span>
