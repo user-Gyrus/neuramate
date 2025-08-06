@@ -56,6 +56,9 @@ function FeaturesCarousel() {
             height={200}
             className="rounded-lg"
           />
+          <button className="bg-blue-600 hover:bg-blue-700 text-white cursor-pointer px-6 py-3 rounded-3xl font-semibold my-4">
+            Explore {currentItem.title}
+          </button>
         </div>
       </div>
 

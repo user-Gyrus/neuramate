@@ -1,5 +1,8 @@
+"use client";
 import { Orbitron, Poppins } from "next/font/google";
 import FeaturesCarousel from "./FeaturesCarousel";
+import Contact from "../Contact";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 const orbitron = Orbitron({
   subsets: ["latin"],
@@ -12,16 +15,17 @@ function Hero() {
     <div className="flex flex-col">
       {/* Intro part */}
       <div className="relative w-full h-screen flex items-center justify-center overflow-hidden">
-        <video
+        {/* <video
           src="/bgvideo.mp4"
           autoPlay
           muted
           loop
           className="absolute top-0 left-0 w-full h-full object-cover"
-        />
+        /> */}
 
         {/* Overlay */}
-        <div className="absolute top-0 left-0 w-full h-full bg-black/60" />
+        {/* <div className="absolute top-0 left-0 w-full h-full bg-black/60" /> */}
+        {/* <div className="absolute w-full h-full bg-gradient-to-r from-red-400 via-pink-400 to-blue-300 rounded-[50%]" /> */}
 
         {/* Content */}
         <div className="relative z-10 text-center text-white px-4">
@@ -46,6 +50,9 @@ function Hero() {
           <span className={`${orbitron.className}`}>NEURAMATE</span>
         </h1>
         <FeaturesCarousel />
+      </div>
+      <div>
+        <Contact />
       </div>
     </div>
   );
