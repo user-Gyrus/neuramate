@@ -4,10 +4,12 @@ import { carousel } from "@/app/_data/carouselData";
 import React, { useState } from "react";
 import { FaCaretLeft, FaCaretRight } from "react-icons/fa";
 import Image from "next/image";
+import { useRouter } from "next/navigation"; // ✅ Import from next/navigation
 
 function FeaturesCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [direction, setDirection] = useState("right"); // for animation
+  const [direction, setDirection] = useState("right");
+  const router = useRouter(); // ✅ Initialize router
 
   const handleLeftClick = () => {
     setDirection("left");
@@ -25,6 +27,10 @@ function FeaturesCarousel() {
 
   const currentItem = carousel[currentIndex];
 
+  const handleNavigate = () => {
+    router.push(currentItem.url); // ✅ Navigate to the feature's URL
+  };
+
   return (
     <div className="flex flex-row h-[500px] mx-1 select-none">
       {/* Left Arrow */}
@@ -35,7 +41,7 @@ function FeaturesCarousel() {
         <FaCaretLeft className="text-5xl text-white" />
       </div>
 
-      {/* Feature Card with Sliding Animation */}
+      {/* Feature Card */}
       <div className="flex-1 flex items-center justify-center overflow-hidden">
         <div
           key={currentItem.id}
@@ -56,7 +62,10 @@ function FeaturesCarousel() {
             height={200}
             className="rounded-lg"
           />
-          <button className="bg-blue-600 hover:bg-blue-700 text-white cursor-pointer px-6 py-3 rounded-3xl font-semibold my-4">
+          <button
+            onClick={handleNavigate} // ✅ Navigate on click
+            className="bg-blue-600 hover:bg-blue-700 text-white cursor-pointer px-6 py-3 rounded-3xl font-semibold my-4"
+          >
             Explore {currentItem.title}
           </button>
         </div>

@@ -36,13 +36,21 @@ function Hero() {
             Summarize videos, capture smart slides & images, and chat with an AI
             friend.
           </p>
-          <button className="bg-blue-600 hover:bg-blue-700 text-white cursor-pointer px-6 py-3 rounded-3xl font-semibold">
+          <button
+            className="bg-blue-600 hover:bg-blue-700 text-white cursor-pointer px-6 py-3 rounded-3xl font-semibold"
+            onClick={() =>
+              window.scrollTo({
+                top: document.getElementById("features").offsetTop,
+                behavior: "smooth",
+              })
+            }
+          >
             Get Started
           </button>
         </div>
       </div>
 
-      <div className="my-4">
+      <div className="my-4" id="features">
         <h1
           className={`text-center text-2xl font-bold my-8 ${poppins.className}`}
         >
