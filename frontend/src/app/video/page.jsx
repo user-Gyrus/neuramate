@@ -1,10 +1,36 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 function Video() {
   const [url, setUrl] = useState("");
   const [summary, setSummary] = useState("");
+
+  const [responseMessage, setResponseMessage] = useState("");
+
+  useEffect(() => {
+    const fetchVideoResponse = async () => {
+      try {
+        const res = await fetch("http://localhost:5000/api/video", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ message: "Hello from frontend!" }),
+        });
+
+        const data = await res.json();
+        setResponseMessage(data.message); // or data.data if needed
+      } catch (err) {
+        console.error("Error fetching bot response:", err);
+        setResponseMessage("Error communicating with bot.");
+      }
+    };
+
+    fetchVideoResponse();
+  }, []);
 
   const handleSummarize = async () => {
     const res = await fetch("/api/summarize", {
@@ -32,6 +58,9 @@ function Video() {
         Summarize Video
       </button>
       {summary && <p className="mt-4 text-gray-200">{summary}</p>}
+      <p>
+        <strong>Bot says:</strong> {responseMessage}
+      </p>
     </div>
   );
 }
