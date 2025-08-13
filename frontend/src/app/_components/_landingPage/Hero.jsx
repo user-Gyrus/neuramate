@@ -11,22 +11,29 @@ const orbitron = Orbitron({
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "700"] });
 
 function Hero() {
+  const handleScrollToFeatures = (event) => {
+    const mainScrollableElement = event.currentTarget.closest("main");
+    const featuresElement = document.getElementById("features");
+
+    // New: Find the header element in the document
+    const headerElement = document.querySelector("header");
+
+    // Get the header's height. Default to 0 if it's not found.
+    const headerHeight = headerElement ? headerElement.offsetHeight : 0;
+
+    if (mainScrollableElement && featuresElement) {
+      mainScrollableElement.scrollTo({
+        // Updated: Subtract the header's height from the target's position
+        top: featuresElement.offsetTop - headerHeight,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
     <div className="flex flex-col">
       {/* Intro part */}
       <div className="relative w-full h-screen flex items-center justify-center overflow-hidden">
-        {/* <video
-          src="/bgvideo.mp4"
-          autoPlay
-          muted
-          loop
-          className="absolute top-0 left-0 w-full h-full object-cover"
-        /> */}
-
-        {/* Overlay */}
-        {/* <div className="absolute top-0 left-0 w-full h-full bg-black/60" /> */}
-        {/* <div className="absolute w-full h-full bg-gradient-to-r from-red-400 via-pink-400 to-blue-300 rounded-[50%]" /> */}
-
         {/* Content */}
         <div className="relative z-10 text-center text-white px-4">
           <h1 className={`text-5xl font-bold mb-4 ${orbitron.className} `}>
@@ -38,21 +45,18 @@ function Hero() {
           </p>
           <button
             className="bg-blue-600 hover:bg-blue-700 text-white cursor-pointer px-6 py-3 rounded-3xl font-semibold"
-            onClick={() =>
-              window.scrollTo({
-                top: document.getElementById("features").offsetTop,
-                behavior: "smooth",
-              })
-            }
+            onClick={handleScrollToFeatures}
           >
             Get Started
           </button>
         </div>
       </div>
 
-      <div className="my-4" id="features">
+      <div className="">
+        {/* We need some top margin/padding here so the heading isn't at the very top edge */}
         <h1
-          className={`text-center text-2xl font-bold my-8 ${poppins.className}`}
+          id="features"
+          className={`text-center text-2xl font-bold pt-20 ${poppins.className}`}
         >
           Explore Key features of <br />
           <span className={`${orbitron.className}`}>NEURAMATE</span>

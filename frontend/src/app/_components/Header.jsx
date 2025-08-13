@@ -1,12 +1,26 @@
+"use client"; // Recommended when the component uses props that change
+
 import Image from "next/image";
 import Link from "next/link";
 
-function Header({ orbitronClass }) {
+// 1. Accept the new `isScrolled` prop
+function Header({ orbitronClass, isScrolled }) {
   return (
-    <div className="flex justify-between flex-row items-center p-4">
+    // 2. Conditionally apply classes based on the `isScrolled` prop
+    <div
+      className={`
+        flex justify-between flex-row items-center p-4 z-10 sticky top-0
+        transition-all duration-300
+        ${
+          isScrolled
+            ? "bg-background/80 backdrop-blur-sm border-b border-gray-200/50 shadow-sm"
+            : "bg-transparent"
+        }
+      `}
+    >
       {/* Left section */}
       <div className="flex items-center">
-        <Link href="/">
+        <Link href="/" className="flex items-center">
           <Image
             src="/image.png"
             alt="NeuraMate Logo"
